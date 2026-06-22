@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>世界杯 · 专题</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f4f9fc;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      color: #1a2c31;
+      line-height: 1.6;
+    }
+
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    /* hero 横幅 */
+    .hero {
+      background: linear-gradient(135deg, #d7efe9 0%, #b3d9d0 100%);
+      border-radius: 2rem;
+      padding: 3.5rem 2.5rem;
+      margin-bottom: 3rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(40, 100, 90, 0.06);
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 240px;
+      height: 240px;
+      background: radial-gradient(circle, rgba(60, 140, 130, 0.08) 0%, transparent 70%);
+      top: -40px;
+      right: -30px;
+      border-radius: 50%;
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      color: #0b3733;
+    }
+
+    .hero .sub {
+      font-size: 1.1rem;
+      color: #2a5a52;
+      margin-top: 0.6rem;
+      max-width: 70%;
+      border-left: 3px solid #3b8a7c;
+      padding-left: 1.2rem;
+    }
+
+    /* 网格卡片区 */
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.8rem;
+      margin-bottom: 2.8rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 1.6rem;
+      padding: 1.6rem 1.8rem;
+      box-shadow: 0 4px 14px rgba(0, 38, 34, 0.03);
+      transition: all 0.2s ease;
+      border: 1px solid rgba(70, 150, 140, 0.08);
+    }
+
+    .card:hover {
+      border-color: #6eb7ab;
+      box-shadow: 0 8px 24px rgba(50, 130, 120, 0.06);
+    }
+
+    .card h2 {
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: #14433c;
+      margin-bottom: 0.6rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .card h2 span {
+      background: #cde8e2;
+      border-radius: 2rem;
+      padding: 0.1rem 0.7rem;
+      font-size: 0.85rem;
+      color: #13544a;
+    }
+
+    .card p {
+      color: #2a4240;
+      margin-bottom: 0.5rem;
+    }
+
+    .card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .highlight {
+      background: #e8f4f0;
+      padding: 0.05rem 0.3rem;
+      border-radius: 4px;
+      color: #0b4d42;
+      font-weight: 450;
+    }
+
+    /* 页尾 */
+    .footer-note {
+      background: #e2f1ec;
+      border-radius: 2rem;
+      padding: 2rem 2.2rem;
+      margin-top: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-note p {
+      color: #1f4a43;
+      font-size: 1rem;
+    }
+
+    .footer-note a {
+      color: #0c5a4d;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 2px solid #87c7bc;
+      padding-bottom: 0.1rem;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .footer-note a:hover {
+      border-bottom-color: #175e51;
+      color: #08362d;
+    }
+
+    .meta-tip {
+      font-size: 0.9rem;
+      background: white;
+      padding: 0.3rem 1rem;
+      border-radius: 3rem;
+      color: #195f53;
+      border: 1px solid #9fcbc1;
+    }
+
+    /* FAQ 摘要样式 */
+    .faq-mini {
+      margin-top: 2.6rem;
+      background: white;
+      border-radius: 1.6rem;
+      padding: 1.6rem 1.8rem;
+      border: 1px solid rgba(70, 150, 140, 0.07);
+    }
+
+    .faq-mini h3 {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #0b3e37;
+      margin-bottom: 1rem;
+    }
+
+    .faq-mini .item {
+      display: flex;
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid #e5f0ec;
+    }
+
+    .faq-mini .item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .faq-mini .q {
+      font-weight: 500;
+      color: #1a594b;
+      min-width: 4.2rem;
+    }
+
+    .faq-mini .a {
+      color: #2b5048;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #d1e5df;
+      margin: 1.6rem 0;
+      opacity: 0.5;
+    }
+
+    /* 移动端适配 */
+    @media (min-width: 640px) {
+      .grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .hero .sub {
+        max-width: 100%;
+        font-size: 0.95rem;
+      }
+      .footer-note {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+      .card {
+        padding: 1.2rem 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- hero 横幅 -->
+  <div class="hero">
+    <h1>稳定的入口 · 世界杯</h1>
+    <div class="sub">杂志专题 · 从场外到场内，慢慢展开的叙述</div>
+  </div>
+
+  <!-- 三段自然介绍 + 网格卡片 -->
+  <div class="grid">
+    <div class="card">
+      <h2>01. 长期通道 <span>入口</span></h2>
+      <p>在赛事信息逐年分散的今天，一个始终可访问的地址意味着什么？<strong class="highlight">世界杯</strong> 官方页面保持一贯的稳定结构，没有频繁跳转，也没有复杂的层级。无论是备战期的数据查阅，还是赛后的回顾，都能在同一个位置找到起点。</p>
+      <p>对于关注赛程、队伍变动或历史记录的观众而言，这种连贯性本身就是一种可靠。</p>
+    </div>
+
+    <div class="card">
+      <h2>02. 页面说明 <span>背景</span></h2>
+      <p>这个页面不是简单的赛事公告栏，而是一个围绕 <strong class="highlight">世界杯</strong> 展开的聚合说明——它解释了什么内容被收录、以何种逻辑组织，以及不同模块之间的关联。没有多余的装饰，只有克制的信息分层。</p>
+      <p>从竞赛规则到举办地变迁，每段说明都经过筛选，避免信息过载。</p>
+    </div>
+
+    <div class="card">
+      <h2>03. 叙述的节奏 <span>场景</span></h2>
+      <p>我们尝试用杂志式的分段来呈现 <strong class="highlight">世界杯</strong> 的侧面：一篇背景介绍，一段功能解读，再加一个简短问答。读者可以按顺序读，也可以直接跳到自己关心的卡片。移动端的卡片间距和字体大小都做了适配，单手操作时也能轻松浏览。</p>
+      <p>每个段落都刻意保留了呼吸感。</p>
+    </div>
+  </div>
+
+  <!-- FAQ 摘要（非完整，仅示风格） -->
+  <div class="faq-mini">
+    <h3>FAQ 摘要 · 几个常见疑问</h3>
+    <div class="item">
+      <div class="q">内容来源？</div>
+      <div class="a">页面整合了公开赛事信息与官方说明文档，不包含未经核实的分析或主观预测。</div>
+    </div>
+    <div class="item">
+      <div class="q">移动端体验</div>
+      <div class="a">卡片采用弹性布局，在较小屏幕上自动调整为单列，按钮和链接区域保持足够触控尺寸。</div>
+    </div>
+    <div class="item">
+      <div class="q">链接位置</div>
+      <div class="a">正文中自然嵌入的 <strong class="highlight">世界杯</strong> 链接指向唯一主站，便于需要进一步查阅的读者直接前往。</div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- 页尾访问提示 —— 自然嵌入链接 -->
+  <div class="footer-note">
+    <p>
+      若想了解更完整的赛事框架、历年数据与官方公告，可前往 <a href="https://wccup2026.com">世界杯</a> 页面。
+      所有内容均以官方公开信息为准。
+    </p>
+    <span class="meta-tip">✦ 稳定入口 · 杂志式阅读</span>
+  </div>
+
+</div>
+</body>
+</html>
